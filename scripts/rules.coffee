@@ -24,6 +24,10 @@ module.exports = (robot) ->
       keywords: 'devchat chatroom'
       output: 'This chat room is for developers only, please ask your question in the main [Home Assistant chat](https://gitter.im/home-assistant/home-assistant).'
     }
+    {
+      keywords: 'hastebin'
+      output: 'Please use [hastebin](http://hastebin.com/) when posting large chunks of code or log output.'
+    }
   ]
 
   robot.hear /^\/rules?(?:\s+(@[a-z0-9_-]+))?(?:\s+(.*))?$/i, (res) ->

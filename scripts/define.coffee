@@ -1,14 +1,16 @@
 # Description:
-#   Home Assistant Chat Assistant
+#   Home Assistant Chat Assistant - Definitions
 #
 # Dependencies:
-#   None
+#   fuzzy
 #
 # Configuration:
 #   None
 #
 # Commands:
-#   /event <@user> <query> - Displays all events that match <query> to the <@user>.
+#   /def <@user> <query>        - Displays all definitions that match <query> to the <@user>.
+#   /define <@user> <query>     - Displays all definitions that match <query> to the <@user>.
+#   /definition <@user> <query> - Displays all definitions that match <query> to the <@user>.
 #
 # Author:
 #   Justin Weberg - @justweb1
@@ -18,21 +20,27 @@ fuzzy = require 'fuzzy'
 
 module.exports = (robot) ->
 
-  events = [
+  dictionary = [
     {
       name: 'homeassistant_start'
+      keywords: ''
+      strict: []
       output: """
         Event `homeassistant_start` is fired when all components from the configuration have been initialized. This is the event that will start the timer firing off `time_changed` events.
       """
     }
     {
       name: 'homeassistant_stop'
+      keywords: ''
+      strict: []
       output: """
         Event `homeassistant_stop` is fired when Home Assistant is shutting down. It should be used to close any open connection or release any resources.
       """
     }
     {
       name: 'state_changed'
+      keywords: ''
+      strict: []
       output: """
         Event `state_changed` is fired when a state changes. Both `old_state` and `new_state` are state objects. [Documentation about state objects](/topics/state_object/).
         > `entity_id` Entity ID of the changed entity. Example: `light.kitchen`
@@ -42,6 +50,8 @@ module.exports = (robot) ->
     }
     {
       name: 'time_changed'
+      keywords: ''
+      strict: []
       output: """
         Event `time_changed` is fired every second by the timer and contains the current time.
         > `now` A [datetime object](https://docs.python.org/3.4/library/datetime.html#datetime.datetime) containing the current time in UTC.
@@ -49,6 +59,8 @@ module.exports = (robot) ->
     }
     {
       name: 'service_registered'
+      keywords: ''
+      strict: []
       output: """
         Event `service_registered` is fired when a new service has been registered within Home Assistant.
         > `domain` Domain of the service. Example: `light`
@@ -57,6 +69,8 @@ module.exports = (robot) ->
     }
     {
       name: 'call_service'
+      keywords: ''
+      strict: []
       output: """
         Event `call_service` is fired to call a service.
         > `domain` Domain of the service. Example: `light`
@@ -67,6 +81,8 @@ module.exports = (robot) ->
     }
     {
       name: 'service_executed'
+      keywords: ''
+      strict: []
       output: """
         Event `service_executed` is fired by the service handler to indicate the service is done.
         > `service_call_id` String with the unique call id of the service call that was executed. Example: `23123-4`
@@ -74,6 +90,8 @@ module.exports = (robot) ->
     }
     {
       name: 'platform_discovered'
+      keywords: ''
+      strict: []
       output: """
         Event `platform_discovered` is fired when a new platform has been discovered by the discovery component.
         > `service` The service that is discovered. Example: `zwave`
@@ -82,6 +100,8 @@ module.exports = (robot) ->
     }
     {
       name: 'component_loaded'
+      keywords: ''
+      strict: []
       output: """
         Event `component_loaded` is fired when a new component has been loaded and initialized.
         > `component` Domain of the component that has just been initialized. Example: `light`
@@ -89,25 +109,29 @@ module.exports = (robot) ->
     }
   ]
 
-  robot.hear /^\/events?(?:\s+(@[a-z0-9_-]+))?(?:\s+(.*))?$/i, (res) ->
-    master = "@#{res.message.user.login}"
-    user  = res.match[1] ? master
-    query = res.match[2]
+  robot.hear /^\/(def|define|definition)(?:\s+(@[a-z0-9_-]+))?(?:\s+(.*))?$/i, (res) ->
+    master  = "@#{res.message.user.login}"
+    command = res.match[1]
+    user    = res.match[2] ? master
+    query   = res.match[3]
 
     unless query
-      res.reply "#{master} Please use this format: `/event <@user> <query>`"
+      res.reply "#{master} Please use this format: `/#{command} <@user> <query>`"
       return
 
-    results = (e for e in events when e.name is query.toLowerCase())
+    results = (d for d in dictionary when d.name is query.toLowerCase())
+
+    unless results.length
+      results = (d for d in dictionary when (d.strict.some (word) -> ~query.toLowerCase().indexOf word.toLowerCase()))
+      console.log 'strict match:', results
 
     unless results.length
       filterOptions =
-        extract: (r) -> [r.name, r.output].join '\n'
-
-      results = fuzzy.filter query, events, filterOptions
+        extract: (r) -> [r.name, r.strict, r.keywords, r.output].join '\n'
+      results = fuzzy.filter query, dictionary, filterOptions
 
     unless results.length
-      res.reply "#{master} I couldn't find any events matching \"#{query}.\""
+      res.reply "#{master} I couldn't find any definitions matching \"#{query}.\""
       return
 
     match = results[0]

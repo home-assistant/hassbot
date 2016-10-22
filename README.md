@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/home-assistant/hassbot](https://badges.gitter.im/home-assistant/hassbot.svg)](https://gitter.im/home-assistant/hassbot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # HassBot
 
 HassBot is the chat assistant for the [Home Assistant chatrooms](https://gitter.im/home-assistant/home-assistant) on Gitter.
@@ -29,5 +31,5 @@ Feel free to contribute to the evolution of HassBot.
   4. Run `$ HUBOT_GITTER2_TOKEN=[Test_user_personal_access_token] ./bin/hubot -a gitter2 --name [test-user-name]`
 
 ## Considerations
-[hubot](http://hubot.github.com)
-[Home Assistant](https://home-assistant.io)
+- [hubot](http://hubot.github.com)
+- [Home Assistant](https://home-assistant.io)

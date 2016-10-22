@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   /git <@user-optional> <query> - Displays all topics that match <query> to the <@user>.
+#   /git <@user> <query> - Displays all topics that match <query> to the <@user>.
 #
 # Authors:
 #   Justin Weberg - @justweb1
@@ -28,13 +28,13 @@ module.exports = (robot) ->
     {
       name: 'xkcd 1597 git'
       output: """
-        [xkcd #1597 - GIT](https://xkcd.com/1597/)
+        [xkcd 1597 - GIT](https://xkcd.com/1597/)
       """
     }
     {
       name: 'xkcd 1296 git commit'
       output: """
-        [xkcd #1296 - GIT Commit](https://xkcd.com/1296/)
+        [xkcd 1296 - GIT Commit](https://xkcd.com/1296/)
       """
     }
   ]

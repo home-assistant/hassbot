@@ -1,8 +1,14 @@
 # Description:
 #   Home Assistant Chat Assistant
 #
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
+#
 # Commands:
-#   /component <@user> <query> - Displays all components that match <query> to the <@user>.
+#   /component || /comp [@user] <query> - Displays all components that match <query> to the <@user>.
 #
 # Authors:
 #   Justin Weberg - @justweb1

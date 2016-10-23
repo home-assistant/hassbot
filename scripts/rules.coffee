@@ -1,15 +1,18 @@
 # Description:
 #   Home Assistant Chat Assistant
 #
+# Dependencies:
+#   None
+#
+# Configuration:
+#   None
+#
 # Commands:
-#   /rules <@user> <query> - Displays all rules that match <query> to the <@user>.
+#   /rule(s) [@user] <query> - Displays all rules that match <query> to the <@user>.
 #
 # Authors:
 #   Justin Weberg - @justweb1
 #   Dale Higgs - @dale3h
-#
-# Todo:
-#   * Add more rules
 
 fuzzy = require 'fuzzy'
 
@@ -21,11 +24,11 @@ module.exports = (robot) ->
       output: 'All feature requests and enhancements need to be submitted in the [Community Forum](https://home-assistant.io/help).'
     }
     {
-      keywords: 'devchat chatroom'
+      keywords: 'devchat chatroom dev chat room'
       output: 'This chat room is for developers only, please ask your question in the main [Home Assistant chat](https://gitter.im/home-assistant/home-assistant).'
     }
     {
-      keywords: 'hastebin'
+      keywords: 'hastebin haste bin'
       output: 'Please use [hastebin](http://hastebin.com/) when posting large chunks of code or log output.'
     }
   ]

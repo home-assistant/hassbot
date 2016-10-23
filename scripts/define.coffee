@@ -8,11 +8,9 @@
 #   None
 #
 # Commands:
-#   /def <@user> <query>        - Displays all definitions that match <query> to the <@user>.
-#   /define <@user> <query>     - Displays all definitions that match <query> to the <@user>.
-#   /definition <@user> <query> - Displays all definitions that match <query> to the <@user>.
+#   /define || /def || /definition [@user] <query> - Displays all definitions that match <query> to the <@user>.
 #
-# Author:
+# Authors:
 #   Justin Weberg - @justweb1
 #   Dale Higgs - @dale3h
 

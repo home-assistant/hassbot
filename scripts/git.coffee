@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   /git <@user> <query> - Displays all topics that match <query> to the <@user>.
+#   /git [@user] <query> - Displays all topics that match <query> to the <@user>.
 #
 # Authors:
 #   Justin Weberg - @justweb1

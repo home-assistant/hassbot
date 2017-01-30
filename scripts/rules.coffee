@@ -31,6 +31,10 @@ module.exports = (robot) ->
       keywords: 'hastebin haste bin'
       output: 'Please use [hastebin](http://hastebin.com/) when posting large chunks of code or log output.'
     }
+    {
+      keywords: 'lang language profanity profanities curse swear inappropriate'
+      output: 'Inappropriate language is not allowed anywhere within the Home Assistant project per the Code of Conduct.'
+    }
   ]
 
   robot.hear /^\/rules?(?:\s+(@[a-z0-9_-]+))?(?:\s+(.*))?$/i, (res) ->

@@ -2,6 +2,8 @@
 
 # HassBot
 
+[![Join the chat at https://gitter.im/home-assistant/hassbot](https://badges.gitter.im/home-assistant/hassbot.svg)](https://gitter.im/home-assistant/hassbot?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 HassBot is the chat assistant for the [Home Assistant chatrooms](https://gitter.im/home-assistant/home-assistant) on Gitter.
 
 ## Purpose

@@ -29,6 +29,7 @@ Feel free to contribute to the evolution of HassBot.
   2. Join the new user to a chat with your main account.
   3. Get your Gitter Personal Access Token for the test user at https://developer.gitter.im
   4. Run `$ HUBOT_GITTER2_TOKEN=[Test_user_personal_access_token] ./bin/hubot -a gitter2 --name [test-user-name]`
+  5. Test only in private rooms. Do NOT test in the Home Assistant chat rooms.
 
 ## Considerations
 - [hubot](http://hubot.github.com)
